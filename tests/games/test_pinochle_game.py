@@ -25,7 +25,7 @@ class TestPinochleGame(unittest.TestCase):
     def test_get_num_actions(self):
         game = Game()
         num_actions = game.get_num_actions()
-        self.assertEqual(num_actions, 91)
+        self.assertEqual(num_actions, 53)
 
     def test_pinochle_dealer(self):
         dealer = PinochleDealer(np.random.RandomState())
@@ -73,12 +73,12 @@ class TestPinochleGame(unittest.TestCase):
         _, current_player_id = game.init_game()
         for _ in range(3):
             legal_actions = game.judger.get_legal_actions()
-            self.assertEqual(len(legal_actions), 36)
+            self.assertEqual(len(legal_actions), 4)
             action = PassAction()
             self.assertTrue(action in legal_actions)
             _, next_player_id = game.step(action)
         legal_actions = game.judger.get_legal_actions()
-        self.assertEqual(len(legal_actions), 36)
+        self.assertEqual(len(legal_actions), 4)
         self.assertTrue(PassAction() in legal_actions)
 
     def test_pass_out_hand(self):

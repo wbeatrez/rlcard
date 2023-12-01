@@ -9,22 +9,22 @@ from .pinochle_card import PinochleCard
 # ====================================
 # Action_ids:
 #       0 -> no_bid_action_id
-#       1 to 35 -> bid_action_id (bid amount by suit or NT)
-#       36 -> pass_action_id
-#       37 -> dbl_action_id
-#       38 -> rdbl_action_id
-#       39 to 90 -> play_card_action_id
+#       1 -> bid +1
+#       2 -> bid +2
+#       3 -> open
+#       4 -> pass
+#       5 to 52 -> play_card_action_id
 # ====================================
 
 
 class ActionEvent(object):  # Interface
 
     no_bid_action_id = 0
-    first_bid_action_id = 1
-    pass_action_id = 36
+    first_bid_action_id = 3
+    pass_action_id = 4
     # dbl_action_id = 37
     # rdbl_action_id = 38
-    first_play_card_action_id = 37
+    first_play_card_action_id = 5
 
     def __init__(self, action_id: int):
         self.action_id = action_id
@@ -39,7 +39,12 @@ class ActionEvent(object):  # Interface
     def from_action_id(action_id: int):
         if action_id == ActionEvent.pass_action_id:
             return PassAction()
-        elif ActionEvent.first_bid_action_id <= action_id <= 35:
+        elif ActionEvent.first_bid_action_id == action_id:
+            bid_amount = 25
+            bid_suit_id = (action_id - ActionEvent.first_bid_action_id) % 4
+            bid_suit = PinochleCard.suits[bid_suit_id]
+            return BidAction(bid_amount, bid_suit)
+        elif ActionEvent.first_bid_action_id < action_id < 4:
             bid_amount = action_id
             bid_suit_id = (action_id - ActionEvent.first_bid_action_id) % 4
             bid_suit = PinochleCard.suits[bid_suit_id]
@@ -48,7 +53,7 @@ class ActionEvent(object):  # Interface
         #     return DblAction()
         # elif action_id == ActionEvent.rdbl_action_id:
         #     return RdblAction()
-        elif ActionEvent.first_play_card_action_id <= action_id < ActionEvent.first_play_card_action_id + 52:
+        elif ActionEvent.first_play_card_action_id <= action_id < ActionEvent.first_play_card_action_id + 48:
             card_id = action_id - ActionEvent.first_play_card_action_id
             card = PinochleCard.card(card_id=card_id)
             return PlayCardAction(card=card)
@@ -87,8 +92,8 @@ class BidAction(CallActionEvent):
         if bid_suit in suits:
             bid_suit_id = suits.index(bid_suit)
         else:
-            bid_suit_id = 4
-        bid_action_id = bid_suit_id + 5 * (bid_amount - 1) + ActionEvent.first_bid_action_id
+            raise Exception(f'BidAction has invalid suit: {bid_suit}')
+        bid_action_id = (bid_amount - 1) + ActionEvent.first_bid_action_id
         super().__init__(action_id=bid_action_id)
         self.bid_amount = bid_amount
         self.bid_suit = bid_suit

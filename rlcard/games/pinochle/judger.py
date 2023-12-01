@@ -37,20 +37,20 @@ class PinochleJudger:
             current_player = self.game.round.get_current_player()
             if not self.game.round.is_bidding_over():
                 legal_actions.append(PassAction())
-                last_make_bid_move: MakeBidMove or None = None
+                # last_make_bid_move: MakeBidMove or None = None
                 # last_dbl_move: MakeDblMove or None = None
                 # last_rdbl_move: MakeRdblMove or None = None
                 for move in reversed(self.game.round.move_sheet):
                     if isinstance(move, MakeBidMove):
-                        last_make_bid_move = move
+                        # last_make_bid_move = move
                         break
                     # elif isinstance(move, MakeRdblMove):
                     #     last_rdbl_move = move
                     # elif isinstance(move, MakeDblMove) and not last_rdbl_move:
                     #     last_dbl_move = move
-                first_bid_action_id = ActionEvent.first_bid_action_id
-                next_bid_action_id = last_make_bid_move.action.action_id + 1 if last_make_bid_move else first_bid_action_id
-                for bid_action_id in range(next_bid_action_id, first_bid_action_id + 35):
+                # first_bid_action_id = ActionEvent.first_bid_action_id
+                # next_bid_action_id = last_make_bid_move.action.action_id + 1 if last_make_bid_move else first_bid_action_id
+                for bid_action_id in [1,2,4]:
                     action = BidAction.from_action_id(action_id=bid_action_id)
                     legal_actions.append(action)
                 # if last_make_bid_move and last_make_bid_move.player.player_id % 2 != current_player.player_id % 2 and not last_dbl_move and not last_rdbl_move:
