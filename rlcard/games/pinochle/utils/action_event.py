@@ -95,8 +95,8 @@ class BidAction(CallActionEvent):
 
     def __str__(self):
         bid_suit = self.bid_suit
-        if not bid_suit:
-            bid_suit = 'NT'
+        # if not bid_suit:
+        #     bid_suit = 'NT'
         return f'{self.bid_amount}{bid_suit}'
 
     def __repr__(self):

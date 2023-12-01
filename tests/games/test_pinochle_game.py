@@ -11,7 +11,7 @@ from rlcard.games.pinochle.game import PinochleGame as Game
 from rlcard.games.pinochle.dealer import PinochleDealer
 from rlcard.games.pinochle.player import PinochlePlayer
 from rlcard.games.pinochle.utils.action_event import PassAction
-from rlcard.games.pinochle.utils.bridge_card import PinochleCard
+from rlcard.games.pinochle.utils.pinochle_card import PinochleCard
 from rlcard.games.pinochle.utils.move import DealHandMove
 
 
@@ -38,7 +38,7 @@ class TestPinochleGame(unittest.TestCase):
         self.assertEqual(len(dealer.shuffled_deck), 48)
         self.assertEqual(len(dealer.stock_pile), 36)
         self.assertEqual(len(current_deck), 48)
-        self.assertEqual(len(BridgeCard.get_deck()), 48)
+        self.assertEqual(len(PinochleCard.get_deck()), 48)
         # Pop top_card from current_deck.
         top_card = current_deck.pop(-1)
         self.assertEqual(str(top_card), "AS")

@@ -139,7 +139,7 @@ class PinochleRound:
         if isinstance(action, PassAction):
             self.move_sheet.append(MakePassMove(current_player))
         elif isinstance(action, BidAction):
-            self.doubling_cube = 1
+            # self.doubling_cube = 1
             make_bid_move = MakeBidMove(current_player, action)
             self.contract_bid_move = make_bid_move
             self.move_sheet.append(make_bid_move)
@@ -231,7 +231,7 @@ class PinochleRound:
         state['current_player_id'] = self.current_player_id
         state['round_phase'] = self.round_phase
         state['last_call_move'] = last_call_move
-        state['doubling_cube'] = self.doubling_cube
+        # state['doubling_cube'] = self.doubling_cube
         state['contact'] = self.contract_bid_move if self.is_bidding_over() and self.contract_bid_move else None
         state['hands'] = [player.hand for player in self.players]
         state['trick_moves'] = trick_moves
@@ -247,11 +247,11 @@ class PinochleRound:
             print(f'last call: {last_call_text}')
         if self.is_bidding_over() and self.contract_bid_move:
             bid_suit = self.contract_bid_move.action.bid_suit
-            doubling_cube = self.doubling_cube
-            if not bid_suit:
-                bid_suit = 'NT'
-            doubling_cube_text = "" if doubling_cube == 1 else "dbl" if doubling_cube == 2 else "rdbl"
-            print(f'contract: {self.contract_bid_move.player} {self.contract_bid_move.action.bid_amount}{bid_suit} {doubling_cube_text}')
+            # doubling_cube = self.doubling_cube
+            # if not bid_suit:
+            #     bid_suit = 'NT'
+            # doubling_cube_text = "" if doubling_cube == 1 else "dbl" if doubling_cube == 2 else "rdbl"
+            print(f'contract: {self.contract_bid_move.player} {self.contract_bid_move.action.bid_amount}{bid_suit}')
         for player in self.players:
             print(f'{player}: {[str(card) for card in player.hand]}')
         if self.is_bidding_over():
