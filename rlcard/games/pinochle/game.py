@@ -35,7 +35,7 @@ class PinochleGame:
         self.round = PinochleRound(num_players=self.num_players, board_id=board_id, np_random=self.np_random)
         for player_id in range(4):
             player = self.round.players[player_id]
-            self.round.dealer.deal_cards(player=player, num=13)
+            self.round.dealer.deal_cards(player=player, num=12)
         current_player_id = self.round.current_player_id
         state = self.get_state(player_id=current_player_id)
         return state, current_player_id

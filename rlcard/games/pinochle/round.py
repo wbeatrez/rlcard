@@ -9,8 +9,8 @@ from typing import List
 from .dealer import PinochleDealer
 from .player import PinochlePlayer
 
-from .utils.action_event import CallActionEvent, PassAction, DblAction, RdblAction, BidAction, PlayCardAction
-from .utils.move import PinochleMove, DealHandMove, PlayCardMove, MakeBidMove, MakePassMove, MakeDblMove, MakeRdblMove, CallMove
+from .utils.action_event import CallActionEvent, PassAction, BidAction, PlayCardAction
+from .utils.move import PinochleMove, DealHandMove, PlayCardMove, MakeBidMove, MakePassMove, CallMove
 from .utils.tray import Tray
 
 
@@ -69,7 +69,7 @@ class PinochleRound:
         for player_id in range(num_players):
             self.players.append(PinochlePlayer(player_id=player_id, np_random=self.np_random))
         self.current_player_id: int = dealer_id
-        self.doubling_cube: int = 1
+        # self.doubling_cube: int = 1
         self.play_card_count: int = 0
         self.contract_bid_move: MakeBidMove or None = None
         self.won_trick_counts = [0, 0]  # count of won tricks by side
@@ -143,12 +143,12 @@ class PinochleRound:
             make_bid_move = MakeBidMove(current_player, action)
             self.contract_bid_move = make_bid_move
             self.move_sheet.append(make_bid_move)
-        elif isinstance(action, DblAction):
-            self.doubling_cube = 2
-            self.move_sheet.append(MakeDblMove(current_player))
-        elif isinstance(action, RdblAction):
-            self.doubling_cube = 4
-            self.move_sheet.append(MakeRdblMove(current_player))
+        # elif isinstance(action, DblAction):
+        #     self.doubling_cube = 2
+        #     self.move_sheet.append(MakeDblMove(current_player))
+        # elif isinstance(action, RdblAction):
+        #     self.doubling_cube = 4
+        #     self.move_sheet.append(MakeRdblMove(current_player))
         if self.is_bidding_over():
             if not self.is_over():
                 self.current_player_id = self.get_left_defender().player_id

@@ -44,10 +44,10 @@ class ActionEvent(object):  # Interface
             bid_suit_id = (action_id - ActionEvent.first_bid_action_id) % 5
             bid_suit = PinochleCard.suits[bid_suit_id] if bid_suit_id < 4 else None
             return BidAction(bid_amount, bid_suit)
-        elif action_id == ActionEvent.dbl_action_id:
-            return DblAction()
-        elif action_id == ActionEvent.rdbl_action_id:
-            return RdblAction()
+        # elif action_id == ActionEvent.dbl_action_id:
+        #     return DblAction()
+        # elif action_id == ActionEvent.rdbl_action_id:
+        #     return RdblAction()
         elif ActionEvent.first_play_card_action_id <= action_id < ActionEvent.first_play_card_action_id + 52:
             card_id = action_id - ActionEvent.first_play_card_action_id
             card = PinochleCard.card(card_id=card_id)
@@ -103,28 +103,28 @@ class BidAction(CallActionEvent):
         return self.__str__()
 
 
-class DblAction(CallActionEvent):
+# class DblAction(CallActionEvent):
 
-    def __init__(self):
-        super().__init__(action_id=ActionEvent.dbl_action_id)
+#     def __init__(self):
+#         super().__init__(action_id=ActionEvent.dbl_action_id)
 
-    def __str__(self):
-        return "dbl"
+#     def __str__(self):
+#         return "dbl"
 
-    def __repr__(self):
-        return "dbl"
+#     def __repr__(self):
+#         return "dbl"
 
 
-class RdblAction(CallActionEvent):
+# class RdblAction(CallActionEvent):
 
-    def __init__(self):
-        super().__init__(action_id=ActionEvent.rdbl_action_id)
+#     def __init__(self):
+#         super().__init__(action_id=ActionEvent.rdbl_action_id)
 
-    def __str__(self):
-        return "rdbl"
+#     def __str__(self):
+#         return "rdbl"
 
-    def __repr__(self):
-        return "rdbl"
+#     def __repr__(self):
+#         return "rdbl"
 
 
 class PlayCardAction(ActionEvent):

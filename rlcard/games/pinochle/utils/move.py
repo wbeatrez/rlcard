@@ -53,22 +53,22 @@ class MakePassMove(CallMove):
         return f'{self.player} {self.action}'
 
 
-class MakeDblMove(CallMove):
+# class MakeDblMove(CallMove):
 
-    def __init__(self, player: PinochlePlayer):
-        super().__init__(player=player, action=DblAction())
+#     def __init__(self, player: PinochlePlayer):
+#         super().__init__(player=player, action=DblAction())
 
-    def __str__(self):
-        return f'{self.player} {self.action}'
+#     def __str__(self):
+#         return f'{self.player} {self.action}'
 
 
-class MakeRdblMove(CallMove):
+# class MakeRdblMove(CallMove):
 
-    def __init__(self, player: PinochlePlayer):
-        super().__init__(player=player, action=RdblAction())
+#     def __init__(self, player: PinochlePlayer):
+#         super().__init__(player=player, action=RdblAction())
 
-    def __str__(self):
-        return f'{self.player} {self.action}'
+#     def __str__(self):
+#         return f'{self.player} {self.action}'
 
 
 class MakeBidMove(CallMove):
