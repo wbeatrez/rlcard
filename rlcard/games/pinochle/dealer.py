@@ -7,7 +7,7 @@
 from typing import List
 
 from .player import PinochlePlayer
-from .utils.pinochleCard import PinochleCard
+from .utils.pinochle_card import PinochleCard
 
 
 class PinochleDealer:
