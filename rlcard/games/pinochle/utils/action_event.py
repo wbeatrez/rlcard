@@ -22,9 +22,9 @@ class ActionEvent(object):  # Interface
     no_bid_action_id = 0
     first_bid_action_id = 1
     pass_action_id = 36
-    dbl_action_id = 37
-    rdbl_action_id = 38
-    first_play_card_action_id = 39
+    # dbl_action_id = 37
+    # rdbl_action_id = 38
+    first_play_card_action_id = 37
 
     def __init__(self, action_id: int):
         self.action_id = action_id
@@ -40,9 +40,9 @@ class ActionEvent(object):  # Interface
         if action_id == ActionEvent.pass_action_id:
             return PassAction()
         elif ActionEvent.first_bid_action_id <= action_id <= 35:
-            bid_amount = 1 + (action_id - ActionEvent.first_bid_action_id) // 5
-            bid_suit_id = (action_id - ActionEvent.first_bid_action_id) % 5
-            bid_suit = PinochleCard.suits[bid_suit_id] if bid_suit_id < 4 else None
+            bid_amount = action_id
+            bid_suit_id = (action_id - ActionEvent.first_bid_action_id) % 4
+            bid_suit = PinochleCard.suits[bid_suit_id]
             return BidAction(bid_amount, bid_suit)
         # elif action_id == ActionEvent.dbl_action_id:
         #     return DblAction()
