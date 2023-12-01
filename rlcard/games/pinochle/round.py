@@ -68,7 +68,7 @@ class PinochleRound:
         self.players: List[PinochlePlayer] = []
         for player_id in range(num_players):
             self.players.append(PinochlePlayer(player_id=player_id, np_random=self.np_random))
-        self.current_player_id: int = dealer_id
+        self.current_player_id: int = dealer_id + 1
         # self.doubling_cube: int = 1
         self.play_card_count: int = 0
         self.contract_bid_move: MakeBidMove or None = None
