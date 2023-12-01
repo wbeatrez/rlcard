@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 from .utils.action_event import PlayCardAction
 from .utils.action_event import ActionEvent, BidAction, PassAction
-from .utils.move import MakeBidMove, MakeDblMove, MakeRdblMove
+from .utils.move import MakeBidMove
 from .utils.pinochle_card import PinochleCard
 
 
@@ -38,16 +38,16 @@ class PinochleJudger:
             if not self.game.round.is_bidding_over():
                 legal_actions.append(PassAction())
                 last_make_bid_move: MakeBidMove or None = None
-                last_dbl_move: MakeDblMove or None = None
-                last_rdbl_move: MakeRdblMove or None = None
+                # last_dbl_move: MakeDblMove or None = None
+                # last_rdbl_move: MakeRdblMove or None = None
                 for move in reversed(self.game.round.move_sheet):
                     if isinstance(move, MakeBidMove):
                         last_make_bid_move = move
                         break
-                    elif isinstance(move, MakeRdblMove):
-                        last_rdbl_move = move
-                    elif isinstance(move, MakeDblMove) and not last_rdbl_move:
-                        last_dbl_move = move
+                    # elif isinstance(move, MakeRdblMove):
+                    #     last_rdbl_move = move
+                    # elif isinstance(move, MakeDblMove) and not last_rdbl_move:
+                    #     last_dbl_move = move
                 first_bid_action_id = ActionEvent.first_bid_action_id
                 next_bid_action_id = last_make_bid_move.action.action_id + 1 if last_make_bid_move else first_bid_action_id
                 for bid_action_id in range(next_bid_action_id, first_bid_action_id + 35):
