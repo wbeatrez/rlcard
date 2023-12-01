@@ -20,9 +20,9 @@ class PinochleRound:
     def dealer_id(self) -> int:
         return self.tray.dealer_id
 
-    @property
-    def vul(self):
-        return self.tray.vul
+    # @property
+    # def vul(self):
+    #     return self.tray.vul
 
     @property
     def board_id(self) -> int:
@@ -240,7 +240,7 @@ class PinochleRound:
     def print_scene(self):
         print(f'===== Board: {self.tray.board_id} move: {len(self.move_sheet)} player: {self.players[self.current_player_id]} phase: {self.round_phase} =====')
         print(f'dealer={self.players[self.tray.dealer_id]}')
-        print(f'vul={self.vul}')
+        # print(f'vul={self.vul}')
         if not self.is_bidding_over() or self.play_card_count == 0:
             last_move = self.move_sheet[-1]
             last_call_text = f'{last_move}' if isinstance(last_move, CallMove) else 'None'
