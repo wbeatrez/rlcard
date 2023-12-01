@@ -44,7 +44,7 @@ class ActionEvent(object):  # Interface
             bid_suit_id = (action_id - ActionEvent.first_bid_action_id) % 4
             bid_suit = PinochleCard.suits[bid_suit_id]
             return BidAction(bid_amount, bid_suit)
-        elif ActionEvent.first_bid_action_id < action_id < 4:
+        elif action_id == 1 or 2:
             bid_amount = action_id
             bid_suit_id = (action_id - ActionEvent.first_bid_action_id) % 4
             bid_suit = PinochleCard.suits[bid_suit_id]
@@ -64,7 +64,7 @@ class ActionEvent(object):  # Interface
     def get_num_actions():
         ''' Return the number of possible actions in the game
         '''
-        return 1 + 35 + 3 + 52  # no_bid, 35 bids, pass, dbl, rdl, 52 play_card
+        return 5 + 48  # no_bid, bid +1, bid +2, open, pass 48 play_card
 
 
 class CallActionEvent(ActionEvent):  # Interface

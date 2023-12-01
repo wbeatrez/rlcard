@@ -24,7 +24,7 @@ class PinochleCard(Card):
         super().__init__(suit=suit, rank=rank)
         suit_index = PinochleCard.suits.index(self.suit)
         rank_index = PinochleCard.ranks.index(self.rank)
-        self.card_id = 13 * suit_index + rank_index
+        self.card_id = 12 * suit_index + rank_index
 
     def __str__(self):
         return f'{self.rank}{self.suit}'
