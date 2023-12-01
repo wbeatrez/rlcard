@@ -41,7 +41,7 @@ class TestPinochleGame(unittest.TestCase):
         self.assertEqual(len(PinochleCard.get_deck()), 48)
         # Pop top_card from current_deck.
         top_card = current_deck.pop(-1)
-        self.assertEqual(str(top_card), "AS")
+        self.assertEqual(str(top_card), "A2S")
         self.assertEqual(len(current_deck), 47)
         self.assertEqual(len(PinochleCard.get_deck()), 48)
 

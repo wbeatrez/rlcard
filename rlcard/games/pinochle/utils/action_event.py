@@ -41,14 +41,14 @@ class ActionEvent(object):  # Interface
             return PassAction()
         elif ActionEvent.first_bid_action_id == action_id:
             bid_amount = 25
-            bid_suit_id = (action_id - ActionEvent.first_bid_action_id) % 4
-            bid_suit = PinochleCard.suits[bid_suit_id]
-            return BidAction(bid_amount, bid_suit)
+            # bid_suit_id = (action_id - ActionEvent.first_bid_action_id) % 4
+            # bid_suit = PinochleCard.suits[bid_suit_id]
+            return BidAction(bid_amount)
         elif action_id == 1 or 2:
             bid_amount = action_id
-            bid_suit_id = (action_id - ActionEvent.first_bid_action_id) % 4
-            bid_suit = PinochleCard.suits[bid_suit_id]
-            return BidAction(bid_amount, bid_suit)
+            # bid_suit_id = (action_id - ActionEvent.first_bid_action_id) % 4
+            # bid_suit = PinochleCard.suits[bid_suit_id]
+            return BidAction(bid_amount)
         # elif action_id == ActionEvent.dbl_action_id:
         #     return DblAction()
         # elif action_id == ActionEvent.rdbl_action_id:
@@ -85,24 +85,24 @@ class PassAction(CallActionEvent):
 
 class BidAction(CallActionEvent):
 
-    def __init__(self, bid_amount: int, bid_suit: str or None):
-        suits = PinochleCard.suits
-        if bid_suit and bid_suit not in suits:
-            raise Exception(f'BidAction has invalid suit: {bid_suit}')
-        if bid_suit in suits:
-            bid_suit_id = suits.index(bid_suit)
-        else:
-            raise Exception(f'BidAction has invalid suit: {bid_suit}')
+    def __init__(self, bid_amount: int):
+        # suits = PinochleCard.suits
+        # if bid_suit and bid_suit not in suits:
+        #     raise Exception(f'BidAction has invalid suit: {bid_suit}')
+        # if bid_suit in suits:
+        #     bid_suit_id = suits.index(bid_suit)
+        # else:
+        #     raise Exception(f'BidAction has invalid suit: {bid_suit}')
         bid_action_id = (bid_amount - 1) + ActionEvent.first_bid_action_id
         super().__init__(action_id=bid_action_id)
         self.bid_amount = bid_amount
-        self.bid_suit = bid_suit
+        # self.bid_suit = bid_suit
 
     def __str__(self):
-        bid_suit = self.bid_suit
+        # bid_suit = self.bid_suit
         # if not bid_suit:
         #     bid_suit = 'NT'
-        return f'{self.bid_amount}{bid_suit}'
+        return f'{self.bid_amount}'
 
     def __repr__(self):
         return self.__str__()
