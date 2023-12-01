@@ -14,11 +14,11 @@ from .pinochle_card import PinochleCard
 from ..player import PinochlePlayer
 
 
-class BridgeMove(object):  # Interface
+class PinochleMove(object):  # Interface
     pass
 
 
-class PlayerMove(BridgeMove):  # Interface
+class PlayerMove(PinochleMove):  # Interface
 
     def __init__(self, player: PinochlePlayer, action: ActionEvent):
         super().__init__()
@@ -32,7 +32,7 @@ class CallMove(PlayerMove):  # Interface
         super().__init__(player=player, action=action)
 
 
-class DealHandMove(BridgeMove):
+class DealHandMove(PinochleMove):
 
     def __init__(self, dealer: PinochlePlayer, shuffled_deck: [PinochleCard]):
         super().__init__()
