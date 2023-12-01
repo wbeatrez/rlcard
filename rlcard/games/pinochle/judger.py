@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from .game import PinochleGame
 
 from .utils.action_event import PlayCardAction
-from .utils.action_event import ActionEvent, BidAction, PassAction, DblAction, RdblAction
+from .utils.action_event import ActionEvent, BidAction, PassAction
 from .utils.move import MakeBidMove, MakeDblMove, MakeRdblMove
 from .utils.pinochle_card import PinochleCard
 
@@ -53,10 +53,10 @@ class PinochleJudger:
                 for bid_action_id in range(next_bid_action_id, first_bid_action_id + 35):
                     action = BidAction.from_action_id(action_id=bid_action_id)
                     legal_actions.append(action)
-                if last_make_bid_move and last_make_bid_move.player.player_id % 2 != current_player.player_id % 2 and not last_dbl_move and not last_rdbl_move:
-                    legal_actions.append(DblAction())
-                if last_dbl_move and last_dbl_move.player.player_id % 2 != current_player.player_id % 2:
-                    legal_actions.append(RdblAction())
+                # if last_make_bid_move and last_make_bid_move.player.player_id % 2 != current_player.player_id % 2 and not last_dbl_move and not last_rdbl_move:
+                #     legal_actions.append(DblAction())
+                # if last_dbl_move and last_dbl_move.player.player_id % 2 != current_player.player_id % 2:
+                #     legal_actions.append(RdblAction())
             else:
                 trick_moves = self.game.round.get_trick_moves()
                 hand = self.game.round.players[current_player.player_id].hand
