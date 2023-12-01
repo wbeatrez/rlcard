@@ -10,7 +10,7 @@ from rlcard.games.base import Card
 class PinochleCard(Card):
 
     suits = ['C', 'D', 'H', 'S']
-    ranks = ['9', '9', 'J', 'J', 'Q', 'Q', 'K', 'K', 'T', 'T', 'A', 'A']
+    ranks = ['91', '92', 'J1', 'J2', 'Q1', 'Q2', 'K1', 'K2', 'T1', 'T2', 'A1', 'A2']
 
     @staticmethod
     def card(card_id: int):

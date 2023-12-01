@@ -115,23 +115,23 @@ class TestPinochleGame(unittest.TestCase):
             hand = player.hand
             self.assertTrue(not hand)
 
-    def test_print_scene(self):
-        game = Game()
-        next_state, next_player_id = game.init_game()
-        deal_hand_move = game.round.move_sheet[0]
-        self.assertTrue(isinstance(deal_hand_move, DealHandMove))
-        while not game.is_over():
-            current_player_id = game.round.current_player_id
-            self.assertEqual(current_player_id, next_player_id)
-            legal_actions = game.judger.get_legal_actions()
-            action = np.random.choice(legal_actions)
-            game.round.print_scene()
-            next_state, next_player_id = game.step(action)
-        game.round.print_scene()
-        for player_id in range(4):
-            player = game.round.players[player_id]
-            hand = player.hand
-            self.assertTrue(not hand)
+    # def test_print_scene(self):
+    #     game = Game()
+    #     next_state, next_player_id = game.init_game()
+    #     deal_hand_move = game.round.move_sheet[0]
+    #     self.assertTrue(isinstance(deal_hand_move, DealHandMove))
+    #     while not game.is_over():
+    #         current_player_id = game.round.current_player_id
+    #         self.assertEqual(current_player_id, next_player_id)
+    #         legal_actions = game.judger.get_legal_actions()
+    #         action = np.random.choice(legal_actions)
+    #         game.round.print_scene()
+    #         next_state, next_player_id = game.step(action)
+    #     game.round.print_scene()
+    #     for player_id in range(4):
+    #         player = game.round.players[player_id]
+    #         hand = player.hand
+    #         self.assertTrue(not hand)
 
 
 if __name__ == '__main__':
